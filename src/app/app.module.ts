@@ -20,6 +20,9 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { AuthComponent } from './services/auth/auth.component';
 import { StudentComponent } from './services/student/student.component';
 import { CompanyComponent } from './services/company/company.component';
+import { AuthGuardComponent } from './services/auth-guard/auth-guard.component';
+import { CompanyGuardComponent } from './services/company-guard/company-guard.component';
+import { StudentGuardComponent } from './services/student-guard/student-guard.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { CompanyComponent } from './services/company/company.component';
     LoaderComponent,
     AuthComponent,
     StudentComponent,
-    CompanyComponent
+    CompanyComponent,
+    AuthGuardComponent,
+    CompanyGuardComponent,
+    StudentGuardComponent
   ],
   imports: [
     BrowserModule,
