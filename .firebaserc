@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "highschoolintern-bd580": {
+      "hosting": {
+        "internship-portal": [
+          "highschoolintern-bd580"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "highschoolintern-bd580"
+  }
+}
