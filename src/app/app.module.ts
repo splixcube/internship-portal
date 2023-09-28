@@ -14,15 +14,10 @@ import { InternshipsAppliedComponent } from './student-dashboard/internships-app
 import { MyInternshipsComponent } from './company-dashboard/my-internships/my-internships.component';
 import { StudentsAppliedComponent } from './company-dashboard/students-applied/students-applied.component';
 import { CreateEditInternshipComponent } from './company-dashboard/create-edit-internship/create-edit-internship.component';
-import { UpdateProfileComponent } from './company-dashboard/update-profile/update-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderComponent } from './shared/loader/loader.component';
-import { AuthComponent } from './services/auth/auth.component';
-import { StudentComponent } from './services/student/student.component';
-import { CompanyComponent } from './services/company/company.component';
-import { AuthGuardComponent } from './services/auth-guard/auth-guard.component';
-import { CompanyGuardComponent } from './services/company-guard/company-guard.component';
-import { StudentGuardComponent } from './services/student-guard/student-guard.component';
+import { UpdateProfileComponent } from './student-dashboard/update-profile/update-profile.component';
+import { ViewInternshipModalComponent } from './shared/view-internship-modal/view-internship-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,19 +35,10 @@ import { StudentGuardComponent } from './services/student-guard/student-guard.co
     CreateEditInternshipComponent,
     UpdateProfileComponent,
     LoaderComponent,
-    AuthComponent,
-    StudentComponent,
-    CompanyComponent,
-    AuthGuardComponent,
-    CompanyGuardComponent,
-    StudentGuardComponent
+    ViewInternshipModalComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
