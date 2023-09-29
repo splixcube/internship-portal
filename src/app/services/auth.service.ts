@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { CommonService } from './common.service';
-import { Firestore, getDoc } from '@angular/fire/firestore';
+import { Firestore, docData, getDoc } from '@angular/fire/firestore';
 import {
   Auth,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from '@angular/fire/auth';
@@ -17,7 +18,18 @@ import { Router } from '@angular/router';
 export class AuthService {
   firestore: Firestore = inject(Firestore);
   auth: Auth = inject(Auth);
-  constructor(public common: CommonService, public router: Router) {}
+  userData;
+  constructor(public common: CommonService, public router: Router) {
+    onAuthStateChanged(this.auth, (state) => {
+      console.log(state);
+      if (state) {
+        const aDoccument = doc(this.firestore, `users/${state.uid}`);
+        docData(aDoccument).subscribe((data: any) => {
+          this.userData = data;
+        });
+      }
+    });
+  }
 
   async registerCompany(data) {
     data.type = 'company';
@@ -110,5 +122,9 @@ export class AuthService {
     } else {
       this.router.navigateByUrl('/auth/student-signin');
     }
+  }
+
+  get profileData() {
+    return this.userData;
   }
 }
