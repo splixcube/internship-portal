@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { UpdateProfileComponent } from './student-dashboard/update-profile/update-profile.component';
 import { ViewInternshipModalComponent } from './shared/view-internship-modal/view-internship-modal.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,14 @@ import { ViewInternshipModalComponent } from './shared/view-internship-modal/vie
     LoaderComponent,
     ViewInternshipModalComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
