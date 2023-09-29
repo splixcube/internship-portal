@@ -19,7 +19,7 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: 'student-login', component: StudentLoginComponent },
-      { path: 'student-register', component: StudentRegistrationComponent },
+      { path: 'student-registration', component: StudentRegistrationComponent },
       { path: 'company-login', component: CompanyLoginComponent },
       { path: 'company-registration', component: CompanyRegistrationComponent },
     ],
