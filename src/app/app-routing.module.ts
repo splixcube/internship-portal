@@ -12,6 +12,9 @@ import { UpdateProfileComponent } from './student-dashboard/update-profile/updat
 import { CompanyDashboardComponent } from './company-dashboard/company-dashboard.component';
 import { MyInternshipsComponent } from './company-dashboard/my-internships/my-internships.component';
 import { StudentsAppliedComponent } from './company-dashboard/students-applied/students-applied.component';
+import { AuthGuardService } from './guards/auth.guard';
+import { StudentGuardService } from './guards/student.guard';
+import { CompanyGuardService } from './guards/company.guard';
 
 const routes: Routes = [
   {
@@ -32,6 +35,7 @@ const routes: Routes = [
       { path: 'applied', component: InternshipsAppliedComponent },
       { path: 'profile', component: UpdateProfileComponent },
     ],
+    canActivate: [AuthGuardService, StudentGuardService],
   },
   {
     path: 'company-dashboard',
@@ -40,6 +44,7 @@ const routes: Routes = [
       { path: 'my-internships', component: MyInternshipsComponent },
       { path: 'applied-students/:id', component: StudentsAppliedComponent },
     ],
+    canActivate: [AuthGuardService, CompanyGuardService],
   },
 ];
 
