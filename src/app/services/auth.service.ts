@@ -1,6 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { CommonService } from './common.service';
-import { Firestore, docData, getDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  doc,
+  docData,
+  getDoc,
+  setDoc,
+} from '@angular/fire/firestore';
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -8,8 +14,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from '@angular/fire/auth';
-import { doc } from 'firebase/firestore';
-import { setDoc } from 'firebase/firestore/lite';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -60,10 +64,10 @@ export class AuthService {
         data.email,
         data.password
       );
-      console.log(res)
+      console.log(res);
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
-      console.log(data)
-      delete data.password
+      console.log(data);
+      delete data.password;
       await setDoc(aDoccument, data);
       this.router.navigateByUrl('/student-dashboard');
       this.common.hideLoader();
