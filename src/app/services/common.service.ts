@@ -37,5 +37,15 @@ export class CommonService {
     });
     return dialogRef.afterClosed();
   }
-  
+  openLogoutDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'custom-dialog';
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      data: {
+        title: 'Logout Confirmation',
+        message: 'Do you want to logout?',
+      },
+    });
+    return dialogRef.afterClosed();
+  }
 }

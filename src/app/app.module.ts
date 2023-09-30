@@ -28,8 +28,14 @@ import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { CompanyProfileComponent } from './company-dashboard/company-profile/company-profile.component';
+import { ViewInternshipComponent } from './shared/view-internship/view-internship.component';
+import { ViewCompanyComponent } from './shared/view-company/view-company.component';
+import { ViewStudentComponent } from './shared/view-student/view-student.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +56,10 @@ import { CompanyProfileComponent } from './company-dashboard/company-profile/com
     LoaderComponent,
     ViewInternshipModalComponent,
     ConfirmModalComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    ViewInternshipComponent,
+    ViewCompanyComponent,
+    ViewStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +73,10 @@ import { CompanyProfileComponent } from './company-dashboard/company-profile/com
     provideAuth(() => getAuth()),
     MatSnackBarModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

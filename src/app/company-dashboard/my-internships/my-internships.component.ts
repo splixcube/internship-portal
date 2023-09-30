@@ -24,9 +24,9 @@ export class MyInternshipsComponent {
     this.commonService.openDeleteDialog().subscribe((result) => {
       if (result == true) {
         this.companyService.deleteIntership(item.id).then(res=>{
-        //  this.commonService.s("Deleted Successfully","")
+         this.commonService.showToast("Deleted Successfully")
         }).catch(err=>{
-         // this.commonService.showError("Error Occoured","Please try again")
+          this.commonService.showToast("Error Occoured")
         })
       }
     });
@@ -37,5 +37,8 @@ export class MyInternshipsComponent {
   }
   viewAplicant(item:any){
     this.router.navigate(['/company-dashboard/applied-students/',item.id])
+  }
+  view(item:any){
+    this.router.navigate(['/company-dashboard/view-internship/',item.id])
   }
 }

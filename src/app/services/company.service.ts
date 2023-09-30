@@ -53,14 +53,14 @@ export class CompanyService {
 
   getStudentsApplied(internshipId: any) {
     const aCollection = collection(this.firestore, `applied`);
-    const q = query(aCollection, where('internship_id', '==', internshipId));
+    const q = query(aCollection, where('internship.id', '==', internshipId));
     return collectionData(q, { idField: 'id' });
   }
 
   updateProfile(data) {
     const aDoc = doc(
       this.firestore,
-      `internships/${localStorage.getItem('uid')}`
+      `users/${localStorage.getItem('uid')}`
     );
     return updateDoc(aDoc, data);
   }

@@ -38,7 +38,7 @@
               *matCellDef="let element">
             <div class="d-flex align-items-center justify-content-start">
               <!-- <i class="fa-solid fa-circle-info table-icon"></i> -->
-              <i class="fa-solid fa-eye table-icon"></i>
+              <i class="fa-solid fa-eye table-icon" (click)="view(element)"></i>
               <i class="fa-solid fa-pen-to-square table-icon" (click)="editItem(element)"></i>
               <i class="fa-solid fa-trash table-icon" (click)="deleteItem(element)"></i>
               <button type="button" style="white-space: pre;"

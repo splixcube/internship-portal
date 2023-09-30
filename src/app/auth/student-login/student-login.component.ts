@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-student-login',
@@ -11,11 +14,20 @@ export class StudentLoginComponent {
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
-  constructor(public fb: FormBuilder) {}
+  constructor(public fb: FormBuilder,public router: Router,
+    public commonService: CommonService,
+    public authService: AuthService) {}
 
-  submit(){
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value)
+ 
+  async submit() {
+    try {
+      let res = await this.authService.studentLogin(this.loginForm.value)
+       this.commonService.showToast("Success")
+        this.router.navigateByUrl("/student-dashboard")
+    }
+    catch (err: any) {
+      localStorage.clear()
+      this.commonService.showError("Error")
     }
   }
 }

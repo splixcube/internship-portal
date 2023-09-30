@@ -15,17 +15,13 @@
       </div>
       <div class="form-group">
         <label>State</label>
-        <select formControlName="state" class="form-control form-select">
-          <option>Select State</option>
-          <option  value="london">london</option>
-        </select>
+        <input type="text" class="form-control" formControlName="state">
+        
       </div>
       <div class="form-group">
-        <label>School District</label>
-        <select formControlName="school_district" class="form-control form-select">
-          <option>Select district</option>
-          <option  value="vancour">vancour</option>
-        </select>
+        <label>District</label>
+        <input type="text" class="form-control" formControlName="school_district">
+      
       </div>
       <div class="form-group">
         <label>School Name</label>
@@ -40,32 +36,45 @@
         <input type="text" class="form-control" formControlName="password"> 
       </div>
       <div class="form-group">
-        <label>Freshman</label>
-        <select formControlName="freshman" class="form-control form-select">
+        <!-- <label>Freshman</label> -->
+        <mat-form-field>
+          <mat-label>Freshman</mat-label>
+          <mat-select formControlName="freshman" multiple>
+            <mat-option *ngFor="let freshman of freshmanList" [value]="freshman.value">{{freshman.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      <!--   <select formControlName="freshman" class="form-control form-select">
           <option>Select Freshman</option>
           <option value="freshman">Freshman</option>
-        </select>
+        </select> -->
       </div>
       <div class="form-group">
-        <label>Sophomore</label>
-        <select formControlName="sophomore" class="form-control form-select">
+        <mat-form-field>
+          <mat-label>Sophomore</mat-label>
+          <mat-select formControlName="sophomore" multiple>
+            <mat-option *ngFor="let sophomore of sophomoreList" [value]="sophomore.value">{{sophomore.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+       <!--  <select formControlName="sophomore" class="form-control form-select">
           <option>Select Sophomore</option>
           <option  value="sophomore">sophomore</option>
-        </select>
+        </select> -->
       </div>
       <div class="form-group">
-        <label>Junior</label>
-        <select formControlName="junior" class="form-control form-select">
-          <option>Select Junior</option>
-          <option  value="junior">Junior</option>
-        </select>
+        <mat-form-field>
+          <mat-label>Junior</mat-label>
+          <mat-select formControlName="junior" multiple>
+            <mat-option *ngFor="let junior of juniorList" [value]="junior.value">{{junior.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="form-group">
-        <label>Senior</label>
-        <select formControlName="senior" class="form-control form-select">
-          <option>Select Senior</option>
-          <option  value="senior"> Senior</option>
-        </select>
+        <mat-form-field>
+          <mat-label>Senior</mat-label>
+          <mat-select formControlName="senior" multiple>
+            <mat-option *ngFor="let senior of seniorList" [value]="senior.value">{{senior.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="form-group">
         <button type="button"   [disabled]="!registrationForm.valid" (click)="submit()" class="btn btn-primary">Submit</button>

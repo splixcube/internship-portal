@@ -17,6 +17,9 @@ import { StudentGuardService } from './guards/student.guard';
 import { CompanyGuardService } from './guards/company.guard';
 import { CreateEditInternshipComponent } from './company-dashboard/create-edit-internship/create-edit-internship.component';
 import { CompanyProfileComponent } from './company-dashboard/company-profile/company-profile.component';
+import { ViewStudentComponent } from './shared/view-student/view-student.component';
+import { ViewInternshipComponent } from './shared/view-internship/view-internship.component';
+import { ViewCompanyComponent } from './shared/view-company/view-company.component';
 
 const routes: Routes = [
   {
@@ -33,9 +36,12 @@ const routes: Routes = [
     path: 'student-dashboard',
     component: StudentDashboardComponent,
     children: [
-      { path: 'internships', component: InternshipListingComponent },
+      { path: '', component: InternshipListingComponent },
       { path: 'applied', component: InternshipsAppliedComponent },
       { path: 'profile', component: UpdateProfileComponent },
+      { path: 'view-student/:id', component: ViewStudentComponent },
+      { path: 'view-internship/:id', component: ViewInternshipComponent },
+      { path: 'view-company/:id', component: ViewCompanyComponent },
     ],
     canActivate: [AuthGuardService, StudentGuardService],
   },
@@ -48,9 +54,13 @@ const routes: Routes = [
       { path: 'create-internship', component: CreateEditInternshipComponent },     
       { path: 'edit-internship/:id', component: CreateEditInternshipComponent },
       { path: 'applied-students/:id', component: StudentsAppliedComponent },
+      { path: 'view-student/:id', component: ViewStudentComponent },
+      { path: 'view-internship/:id', component: ViewInternshipComponent },
+      { path: 'view-company/:id', component: ViewCompanyComponent },
     ],
-   /*  canActivate: [AuthGuardService, CompanyGuardService], */
+   canActivate: [AuthGuardService, CompanyGuardService], 
   },
+  { path: '**', redirectTo: '/auth' },
 ];
 
 @NgModule({

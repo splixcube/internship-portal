@@ -22,11 +22,14 @@ id:any;
       console.log(params,this.id)
       if(this.id){
         this.companyService.getStudentsApplied(this.id).subscribe((res) => {
+          console.log(res)
           this.dataSource = new MatTableDataSource<any>(res);
         });
       }
-     
     });
-    
+  }
+
+  view(item:any){
+    this.router.navigate(['/company-dashboard/view-student/',item.id])
   }
 }

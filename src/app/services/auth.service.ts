@@ -45,6 +45,7 @@ export class AuthService {
         data.password
       );
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
+      delete data.password;
       await setDoc(aDoccument, data);
       this.router.navigateByUrl('/company-dashboard');
       this.common.hideLoader();
@@ -64,9 +65,7 @@ export class AuthService {
         data.email,
         data.password
       );
-      console.log(res);
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
-      console.log(data);
       delete data.password;
       await setDoc(aDoccument, data);
       this.router.navigateByUrl('/student-dashboard');
@@ -82,7 +81,7 @@ export class AuthService {
     try {
       let res = await signInWithEmailAndPassword(
         this.auth,
-        loginData.username,
+        loginData.email,
         loginData.password
       );
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
@@ -102,7 +101,7 @@ export class AuthService {
     try {
       let res = await signInWithEmailAndPassword(
         this.auth,
-        loginData.username,
+        loginData.email,
         loginData.password
       );
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
@@ -125,8 +124,10 @@ export class AuthService {
   async logout() {
     await signOut(this.auth);
     if (localStorage.getItem('type') == 'company') {
+      localStorage.clear()
       this.router.navigateByUrl('/auth/company-signin');
     } else {
+      localStorage.clear()
       this.router.navigateByUrl('/auth/student-signin');
     }
   }

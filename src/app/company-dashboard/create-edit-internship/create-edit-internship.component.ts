@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
 import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class CreateEditInternshipComponent {
   });
   id:any;
   constructor(public fb: FormBuilder,public route: ActivatedRoute,
+    public commonService: CommonService,public router: Router,
     public companyService: CompanyService) {}
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -38,14 +40,31 @@ export class CreateEditInternshipComponent {
     });
  
   }
-  submit(){
+ async submit(){
     if(this.internshipForm.valid){
       console.log(this.internshipForm.value)
       if(this.id){
-        this.companyService.updateInternship(this.id,this.internshipForm.value)
+        try{
+
+          let res = await  this.companyService.updateInternship(this.id,this.internshipForm.value)
+          this.router.navigateByUrl("/company-dashboard")
+           this.commonService.showToast('success update')
+         }
+         catch(err){
+           this.commonService.showError(err)
+         }
+       
       }
       else{
-        this.companyService.addInternship(this.internshipForm.value)
+        try{
+          let res = await this.companyService.addInternship(this.internshipForm.value)
+          this.router.navigateByUrl("/company-dashboard")
+          this.commonService.showToast('success create')
+         }
+         catch(err){
+           this.commonService.showError(err)
+         }
+        
       }
     }
   }
