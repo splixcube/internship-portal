@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmModalComponent } from '../shared/confirm-modal/confirm-modal.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
   loader = false;
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog) {}
 
   showLoader() {
     this.loader = true;
@@ -23,4 +25,17 @@ export class CommonService {
   showError(message) {
     this._snackBar.open(message);
   }
+
+  openDeleteDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'custom-dialog';
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      data: {
+        title: 'Delete Confirmation',
+        message: 'Do you want to delete?',
+      },
+    });
+    return dialogRef.afterClosed();
+  }
+  
 }

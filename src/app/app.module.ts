@@ -24,10 +24,17 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
+import { CompanyProfileComponent } from './company-dashboard/company-profile/company-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     StudentRegistrationComponent,
     CompanyRegistrationComponent,
     CompanyLoginComponent,
@@ -42,17 +49,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     UpdateProfileComponent,
     LoaderComponent,
     ViewInternshipModalComponent,
+    ConfirmModalComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     MatSnackBarModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

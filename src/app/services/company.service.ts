@@ -9,6 +9,7 @@ import {
   updateDoc,
   where,
 } from '@angular/fire/firestore';
+import { deleteDoc, getDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,11 @@ export class CompanyService {
     const aCollection = collection(this.firestore, 'internships');
     return collectionData(aCollection, { idField: 'id' });
   }
-
+ async getSingleInternships(id:any){
+    const aDoccument = doc(this.firestore, `internships/${id}`);
+    let item = (await getDoc(aDoccument)).data();
+    return item;
+  }
   getMyInternships() {
     const aCollection = collection(this.firestore, 'internships');
     const q = query(
@@ -40,6 +45,10 @@ export class CompanyService {
   updateInternship(id, data) {
     const aDoc = doc(this.firestore, `internships/${id}`);
     return updateDoc(aDoc, data);
+  }
+  deleteIntership(id: any) {
+    const aDoccument = doc(this.firestore, `internships/${id}`);
+    return deleteDoc(aDoccument);
   }
 
   getStudentsApplied(internshipId: any) {

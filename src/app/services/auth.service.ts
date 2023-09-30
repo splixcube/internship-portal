@@ -60,7 +60,10 @@ export class AuthService {
         data.email,
         data.password
       );
+      console.log(res)
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
+      console.log(data)
+      delete data.password
       await setDoc(aDoccument, data);
       this.router.navigateByUrl('/student-dashboard');
       this.common.hideLoader();

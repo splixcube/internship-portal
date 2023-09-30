@@ -1,1 +1,75 @@
-<p>student-registration works!</p>
+<div class="row">
+  <div class="col-md-8 mx-auto">
+     <form [formGroup]="registrationForm">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" formControlName="first_name"> 
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" formControlName="last_name"> 
+      </div>
+      <div class="form-group">
+        <label>DOB Name</label>
+        <input type="date" class="form-control" formControlName="dob_name"> 
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <select formControlName="state" class="form-control form-select">
+          <option>Select State</option>
+          <option  value="london">london</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>School District</label>
+        <select formControlName="school_district" class="form-control form-select">
+          <option>Select district</option>
+          <option  value="vancour">vancour</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>School Name</label>
+        <input type="text" class="form-control" formControlName="school_name"> 
+      </div>
+      <div class="form-group">
+        <label>Contact Email ID</label>
+        <input type="email" class="form-control" formControlName="email"> 
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="text" class="form-control" formControlName="password"> 
+      </div>
+      <div class="form-group">
+        <label>Freshman</label>
+        <select formControlName="freshman" class="form-control form-select">
+          <option>Select Freshman</option>
+          <option value="freshman">Freshman</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Sophomore</label>
+        <select formControlName="sophomore" class="form-control form-select">
+          <option>Select Sophomore</option>
+          <option  value="sophomore">sophomore</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Junior</label>
+        <select formControlName="junior" class="form-control form-select">
+          <option>Select Junior</option>
+          <option  value="junior">Junior</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Senior</label>
+        <select formControlName="senior" class="form-control form-select">
+          <option>Select Senior</option>
+          <option  value="senior"> Senior</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="button"   [disabled]="!registrationForm.valid" (click)="submit()" class="btn btn-primary">Submit</button>
+      </div>
+     </form>
+  </div>
+</div>

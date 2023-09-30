@@ -15,13 +15,15 @@ import { StudentsAppliedComponent } from './company-dashboard/students-applied/s
 import { AuthGuardService } from './guards/auth.guard';
 import { StudentGuardService } from './guards/student.guard';
 import { CompanyGuardService } from './guards/company.guard';
+import { CreateEditInternshipComponent } from './company-dashboard/create-edit-internship/create-edit-internship.component';
+import { CompanyProfileComponent } from './company-dashboard/company-profile/company-profile.component';
 
 const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
     children: [
-      { path: 'student-login', component: StudentLoginComponent },
+      { path: '', component: StudentLoginComponent },
       { path: 'student-registration', component: StudentRegistrationComponent },
       { path: 'company-login', component: CompanyLoginComponent },
       { path: 'company-registration', component: CompanyRegistrationComponent },
@@ -41,10 +43,13 @@ const routes: Routes = [
     path: 'company-dashboard',
     component: CompanyDashboardComponent,
     children: [
-      { path: 'my-internships', component: MyInternshipsComponent },
+      { path: '', component: MyInternshipsComponent },
+      { path: 'company-profile', component: CompanyProfileComponent },
+      { path: 'create-internship', component: CreateEditInternshipComponent },     
+      { path: 'edit-internship/:id', component: CreateEditInternshipComponent },
       { path: 'applied-students/:id', component: StudentsAppliedComponent },
     ],
-    canActivate: [AuthGuardService, CompanyGuardService],
+   /*  canActivate: [AuthGuardService, CompanyGuardService], */
   },
 ];
 

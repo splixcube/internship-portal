@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-company-registration',
@@ -16,11 +17,12 @@ export class CompanyRegistrationComponent {
     company_city: ['', Validators.required],
     company_state: ['', Validators.required],
   });
-  constructor(public fb: FormBuilder) {}
+  constructor(public fb: FormBuilder,public authService: AuthService) {}
 
   submit(){
     if(this.registrationForm.valid){
-      
+      console.log(this.registrationForm.value)
+      this.authService.registerCompany(this.registrationForm.value)
     }
   }
 }
