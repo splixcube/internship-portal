@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -17,37 +17,63 @@ export class StudentRegistrationComponent {
     school_name: ['', Validators.required],
     state: ['', Validators.required],
     school_district: ['', Validators.required],
-    freshman: ['', Validators.required],
-    sophomore: ['', Validators.required],
-    junior: ['', Validators.required],
-    senior: ['', Validators.required],
+    freshman:  this.fb.array([], Validators.required),
+    sophomore: this.fb.array([], Validators.required),
+    junior: this.fb.array([], Validators.required),
+    senior: this.fb.array([], Validators.required),
   });
-  freshmanList: any =[
-    {title: 'abc', value:'123'},
-    {title: 'def', value:'456'},
-    {title: 'ghi', value:'789'}
-  ]
-  sophomoreList: any =[
-    {title: 'aabc', value:'123'},
-    {title: 'ddef', value:'456'},
-    {title: 'gghi', value:'789'}
-  ]
- juniorList: any =[
-    {title: 'jabc', value:'123'},
-    {title: 'jdef', value:'456'},
-    {title: 'jghi', value:'789'}
-  ]
-  seniorList: any =[
-    {title: 'sabc', value:'123'},
-    {title: 'sdef', value:'456'},
-    {title: 'sghi', value:'789'}
-  ]
-  constructor(public fb: FormBuilder,public authService: AuthService) {}
+  constructor(public fb: FormBuilder,public authService: AuthService) {
+    this.addFreshman()
+    this.addSophomore()
+    this.addJunior()
+    this.addSenior()
+  }
 
   submit(){
     if(this.registrationForm.valid){
       console.log(this.registrationForm.value)
       this.authService.registerStudent(this.registrationForm.value)
     }
+ 
+  }
+  get freshman() {
+    return this.registrationForm.get('freshman') as FormArray;
+  }
+  get sophomore() {
+    return this.registrationForm.get('sophomore') as FormArray;
+  }
+  get junior() {
+    return this.registrationForm.get('junior') as FormArray;
+  }
+  get senior() {
+    return this.registrationForm.get('senior') as FormArray;
+  }
+
+  // Add an item to the FormArray
+  addFreshman() {
+    this.freshman.push(this.fb.control('', Validators.required));
+  }
+  addSophomore() {
+    this.sophomore.push(this.fb.control('', Validators.required));
+  }
+  addJunior() {
+    this.junior.push(this.fb.control('', Validators.required));
+  }
+  addSenior() {
+    this.senior.push(this.fb.control('', Validators.required));
+  }
+
+  // Remove an item from the FormArray
+  removeFreshman(index: number) {
+    this.freshman.removeAt(index);
+  }
+  removeSophomore(index: number) {
+    this.sophomore.removeAt(index);
+  }
+  removeJunior(index: number) {
+    this.junior.removeAt(index);
+  }
+  removeSenior(index: number) {
+    this.senior.removeAt(index);
   }
 }

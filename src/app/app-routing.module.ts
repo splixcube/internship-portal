@@ -20,16 +20,20 @@ import { CompanyProfileComponent } from './company-dashboard/company-profile/com
 import { ViewStudentComponent } from './shared/view-student/view-student.component';
 import { ViewInternshipComponent } from './shared/view-internship/view-internship.component';
 import { ViewCompanyComponent } from './shared/view-company/view-company.component';
+import { HomeComponent } from './auth/home/home.component';
 
 const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
     children: [
-      { path: '', component: StudentLoginComponent },
+      { path: '', component: HomeComponent },
+   
+      { path: 'login', component: StudentLoginComponent },
       { path: 'student-registration', component: StudentRegistrationComponent },
-      { path: 'company-login', component: CompanyLoginComponent },
+     /*  { path: 'company-login', component: CompanyLoginComponent }, */
       { path: 'company-registration', component: CompanyRegistrationComponent },
+      { path: ':fragment', component: HomeComponent },
     ],
   },
   {
@@ -64,7 +68,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

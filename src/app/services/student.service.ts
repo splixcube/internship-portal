@@ -49,16 +49,15 @@ export class StudentService {
     let company: any = { ...companyDoc.data(), id: companyDoc.id };
 
     const aCollection = collection(this.firestore, `applied`);
-  let status = {
-    status: 'applied'
-  }
+  let status:any = 'applied'
+  
     return addDoc(aCollection, { student, company, internship,status });
   }
 
   updateProfile(data) {
     const aDoc = doc(
       this.firestore,
-      `internships/${localStorage.getItem('uid')}`
+      `users/${localStorage.getItem('uid')}`
     );
     return updateDoc(aDoc, data);
   }

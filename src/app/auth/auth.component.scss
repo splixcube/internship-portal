@@ -1,0 +1,53 @@
+
+
+hr {
+  background-color: white;
+  color: white;
+}
+.footer {
+  padding: 50px 20px 0px 20px;
+}
+.menu-footer li {
+  color: white;
+  padding: 8px 0px;
+  position: relative;
+}
+.menu-footer li a {
+  color: white;
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+}
+
+
+.social-icon {
+  display: inline-flex;
+}
+.social-icon li {
+  margin-left: 10px;
+  height: 35px;
+  width: 35px;
+  text-align: center;
+}
+.social-icon a {
+  height: 35px;
+  width: 35px;
+  line-height: 37px;
+  font-size: 17px;
+  text-align: center;
+  color: white;
+}
+.social-icon .face-book {
+  background-color: #3b5998;
+  border-radius: 50%;
+}
+.social-icon .twitter {
+  background-color: #10bffe;
+  border-radius: 50%;
+}
+.social-icon .linkedin {
+  background-color: #3b5998;
+  border-radius: 50%;
+}
+

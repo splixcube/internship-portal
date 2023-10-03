@@ -1,84 +1,105 @@
+<form [formGroup]="registrationForm">
 <div class="row">
-  <div class="col-md-8 mx-auto">
-     <form [formGroup]="registrationForm">
-      <div class="form-group">
-        <label>First Name</label>
+  <div class="col-md-8 mx-auto my-5">
+<div class="custom-card">
+  <h1 class="my-3 title-card ps-2"> Student Registration</h1>
+  <div class="row">
+      <div class="form-group col-md-6">
+        <label>First Name<span>*</span></label>
         <input type="text" class="form-control" formControlName="first_name"> 
       </div>
-      <div class="form-group">
-        <label>Last Name</label>
+      <div class="form-group col-md-6">
+        <label>Last Name <span>*</span></label>
         <input type="text" class="form-control" formControlName="last_name"> 
       </div>
-      <div class="form-group">
-        <label>DOB Name</label>
+      <div class="form-group col-md-6">
+        <label>DOB Name<span>*</span></label>
         <input type="date" class="form-control" formControlName="dob_name"> 
       </div>
-      <div class="form-group">
-        <label>State</label>
+      <div class="form-group col-md-6">
+        <label>State<span>*</span></label>
         <input type="text" class="form-control" formControlName="state">
         
       </div>
-      <div class="form-group">
-        <label>District</label>
+      <div class="form-group col-md-6">
+        <label>District<span>*</span></label>
         <input type="text" class="form-control" formControlName="school_district">
       
       </div>
-      <div class="form-group">
-        <label>School Name</label>
+      <div class="form-group col-md-6">
+        <label>School Name<span>*</span></label>
         <input type="text" class="form-control" formControlName="school_name"> 
       </div>
-      <div class="form-group">
-        <label>Contact Email ID</label>
+      <div class="form-group col-md-6">
+        <label>Contact Email ID<span>*</span></label>
         <input type="email" class="form-control" formControlName="email"> 
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="text" class="form-control" formControlName="password"> 
+      <div class="form-group col-md-6">
+        <label>Password<span>*</span></label>
+        <input type="password" class="form-control" formControlName="password"> 
       </div>
-      <div class="form-group">
-        <!-- <label>Freshman</label> -->
-        <mat-form-field>
-          <mat-label>Freshman</mat-label>
-          <mat-select formControlName="freshman" multiple>
-            <mat-option *ngFor="let freshman of freshmanList" [value]="freshman.value">{{freshman.title}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      <!--   <select formControlName="freshman" class="form-control form-select">
-          <option>Select Freshman</option>
-          <option value="freshman">Freshman</option>
-        </select> -->
+      <div class="form-group col-md-6">
+        <label>Freshman<span>*</span></label> 
+        <div class="d-flex align-items-start">
+        <div class="d-block" formArrayName="freshman">
+          <div class="d-flex align-items-center" *ngFor="let item of freshman.controls; let i = index">
+            <input type="text" class="form-control mt-2" [formControlName]="i" />
+
+            <i class="fa-solid fa-trash mx-2 pointer" (click)="removeFreshman(i)"></i>
+          <!--   <button type="button"  class="btn btn-primary" (click)="removeFreshman(i)">Remove</button> -->
+          </div>
+         
+        </div>
+        <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addFreshman()"></i>
+     </div>
       </div>
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Sophomore</mat-label>
-          <mat-select formControlName="sophomore" multiple>
-            <mat-option *ngFor="let sophomore of sophomoreList" [value]="sophomore.value">{{sophomore.title}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-       <!--  <select formControlName="sophomore" class="form-control form-select">
-          <option>Select Sophomore</option>
-          <option  value="sophomore">sophomore</option>
-        </select> -->
+      <div class="form-group col-md-6">
+        <label>Sophomore<span>*</span></label> 
+        <div class="d-flex align-items-start">
+        <div class="d-block " formArrayName="sophomore">
+          <div class="d-flex align-items-center" *ngFor="let item of sophomore.controls; let i = index">
+            <input type="text" class="form-control mt-2" [formControlName]="i" />
+            <i class="fa-solid fa-trash mx-2 pointer " (click)="removeSophomore(i)"></i>
+          <!--   <button type="button"  class="btn btn-primary" (click)="removeSophomore(i)">Remove</button> -->
+          </div>
+        
+        </div>
+        <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addSophomore()"></i>
+        </div>
+     
+<!--         <button type="button"  class="btn btn-primary" (click)="addSophomore()">Add Item</button> -->
       </div>
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Junior</mat-label>
-          <mat-select formControlName="junior" multiple>
-            <mat-option *ngFor="let junior of juniorList" [value]="junior.value">{{junior.title}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="form-group col-md-6">
+        <label>Junior<span>*</span></label> 
+        <div class="d-flex align-items-start">
+        <div class="d-block" formArrayName="junior">
+          <div class="d-flex align-items-center" *ngFor="let item of junior.controls; let i = index">
+            <input type="text" class="form-control mt-2" [formControlName]="i" />
+            <i class="fa-solid fa-trash mx-2 pointer" (click)="removeJunior(i)"></i>
+           <!--  <button type="button"  class="btn btn-primary" (click)="removeJunior(i)">Remove</button> -->
+          </div>
+         
+        </div>
+        <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addJunior()"></i>
+       </div>
+   </div>
+      <div class="form-group col-md-6">
+        <label>Senior<span>*</span></label> 
+        <div class="d-flex align-items-start">
+        <div class="d-block" formArrayName="senior">
+          <div class="d-flex align-items-center" *ngFor="let item of senior.controls; let i = index">
+            <input type="text" class="form-control mt-2" [formControlName]="i" />
+            <i class="fa-solid fa-trash mx-2 pointer" (click)="removeSenior(i)"></i>
+          </div>
+        </div>
+        <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addSenior()"></i>
       </div>
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Senior</mat-label>
-          <mat-select formControlName="senior" multiple>
-            <mat-option *ngFor="let senior of seniorList" [value]="senior.value">{{senior.title}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
+       </div>
+      <div class="form-group col-md-12 text-end">
         <button type="button"   [disabled]="!registrationForm.valid" (click)="submit()" class="btn btn-primary">Submit</button>
       </div>
-     </form>
+    </div>
+  </div>
   </div>
 </div>
+</form>

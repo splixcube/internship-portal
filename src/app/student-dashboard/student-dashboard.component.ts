@@ -14,11 +14,14 @@ export class StudentDashboardComponent {
     this.commonService.openLogoutDialog().subscribe((result) => {
       if (result == true) {
         this.authService.logout().then(res=>{
-          this.commonService.showToast("Deleted Successfully")
+          this.commonService.showToast("Successfully Logout")
         }).catch(err=>{
           this.commonService.showToast("Error Occoured")
         })
       }
     });
+  }
+  toggleClass() {
+    this.commonService.mobileSidebar = !this.commonService.mobileSidebar;
   }
 }

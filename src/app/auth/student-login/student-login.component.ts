@@ -22,12 +22,11 @@ export class StudentLoginComponent {
   async submit() {
     try {
       let res = await this.authService.studentLogin(this.loginForm.value)
-       this.commonService.showToast("Success")
-        this.router.navigateByUrl("/student-dashboard")
+       this.commonService.showToast("Successfully login")
     }
     catch (err: any) {
       localStorage.clear()
-      this.commonService.showError("Error")
+      this.commonService.showError(err)
     }
   }
 }

@@ -1,5 +1,13 @@
 <div class="row my-5">
   <div class="col-md-10 mx-auto">
+    <h1 class="my-3 title-card ps-2">Apply For Internship</h1>
+    <div class="py-2">
+      <input class="form-control search-box"
+             matInput
+             type="text"
+             (keyup)="doFilter($event)"
+             placeholder="Search">
+    </div>
     <div class="table-container">
       <table mat-table
              [dataSource]="dataSource"
@@ -26,7 +34,7 @@
           <th mat-header-cell
               *matHeaderCellDef> <strong>Last Date Apply</strong> </th>
           <td mat-cell
-              *matCellDef="let element"> {{element.last_apply_date}} </td>
+              *matCellDef="let element"> {{element.last_apply_date | date: 'dd/MM/yyyy'}} </td>
         </ng-container>
         <!-- Action Column -->
         <ng-container matColumnDef="action">
@@ -40,9 +48,12 @@
               <button type="button"
               (click)="viewItem(element)"
               class="btn btn-primary mx-2 px-4 py-1">View</button>
-              <button type="button"
+              <button type="button" *ngIf="!element.alreadyApplied "
               (click)="apply(element)"
               class="btn btn-primary px-4 py-1">Apply</button>
+              <button type="button" *ngIf="element.alreadyApplied "
+              [disabled]="true"
+              class="btn btn-primary px-4 py-1">Applied</button>
        <!--      <button type="button"
                       (click)="editItem(element)"
                       class="btn btn-primary px-4 py-1">Edit</button>

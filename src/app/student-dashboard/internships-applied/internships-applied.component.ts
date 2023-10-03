@@ -12,13 +12,20 @@ import { StudentService } from 'src/app/services/student.service';
 export class InternshipsAppliedComponent {
   displayedColumns: string[] = ['sno', 'name','status'];
   dataSource: any = [];
-
+list:any;
   constructor(public studentService: StudentService,
     public commonService: CommonService,
     public router: Router){}
   ngOnInit(): void {
     this.studentService.getMyAppliedInternships().subscribe((res) => {
+      this.list = res;
       this.dataSource = new MatTableDataSource<any>(res);
+    },
+    (error) => {
+      this.commonService.showError("Failed");
     });
   }
+  doFilter = (event: any) => {
+    this.dataSource.filter = event.target.value.trim().toLocaleLowerCase();
+  };
 }

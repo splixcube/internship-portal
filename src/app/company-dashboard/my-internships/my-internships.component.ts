@@ -12,12 +12,16 @@ import { CompanyService } from 'src/app/services/company.service';
 export class MyInternshipsComponent {
   displayedColumns: string[] = ['sno', 'name','lastdate', 'action'];
   dataSource: any = [];
-
+list:any;
   constructor(public companyService: CompanyService,public commonService: CommonService,
     public router: Router){}
   ngOnInit(): void {
     this.companyService.getMyInternships().subscribe((res) => {
+      this.list = res;
       this.dataSource = new MatTableDataSource<any>(res);
+    },
+    (error) => {
+      this.commonService.showError("Failed")
     });
   }
   deleteItem(item:any){
@@ -41,4 +45,7 @@ export class MyInternshipsComponent {
   view(item:any){
     this.router.navigate(['/company-dashboard/view-internship/',item.id])
   }
+  doFilter = (event: any) => {
+    this.dataSource.filter = event.target.value.trim().toLocaleLowerCase();
+  };
 }

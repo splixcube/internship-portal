@@ -1,7 +1,73 @@
-<div class="row my-5">
-  <div class="col-md-10 mx-auto">
-     <div class="card">
-      
-     </div>
-    </div>
-    </div>
+
+    <div class="row my-5">
+      <div class="col-md-10 mx-auto">
+        <div class="custom-card">
+          <button type="button" 
+          (click)="back()"
+          class="btn btn-primary px-4 py-1"><i class="fa-solid fa-arrow-left text-white mx-1"></i>Back</button>
+          <h1 class="my-3 title-card ps-2">Internship Details</h1>
+      <div class="row">
+          <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+<div class="sub-heading"><span class="label">Internship Title: </span>
+            </div>
+             <span>{{data?.internship_title }}</span>
+            </div>
+          </div> 
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">About Company: </span></div>
+             <span>{{data?.about_company }}</span></div>
+
+           </div>
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">About Internship: </span> </div>
+            <span>{{data?.job_description }}</span></div>
+           </div> 
+               <div class="col-md-12 my-2">
+                <div class="d-block d-md-flex">
+                  <div class="sub-heading">
+                <span class="label">Company Address: </span> </div>
+                <span>{{data?.company_address }}</span></div>
+               </div> 
+               <div class="col-md-12 my-2">
+                <div class="d-block d-md-flex">
+                  <div class="sub-heading">
+                <span class="label">Company City: </span> </div>
+                <span>{{data?.company_city }}</span></div>
+               </div> 
+               <div class="col-md-12 my-2">
+                <div class="d-block d-md-flex">
+                  <div class="sub-heading">
+                <span class="label">Company State: </span></div>
+                 <span>{{data?.company_state }}</span></div>
+               </div>
+             
+               <div class="col-md-12 my-2">
+                <div class="d-block d-md-flex">
+                  <div class="sub-heading">
+                <span class="label">Minimum Requirenment: </span> </div>
+                <span>{{data?.minimum_requirenment }}</span></div>
+               </div> 
+               <div class="col-md-12 my-2">
+                <div class="d-block d-md-flex">
+                  <div class="sub-heading">
+                <span class="label">Last Apply Date: </span></div>
+                 <span>{{data?.last_apply_date | date: 'dd/MM/yyyy'}}</span></div>
+               </div> 
+               <div class="col-md-12 text-center" *ngIf="authService.isType() == 'student'">
+             <button type="button" *ngIf="!data?.alreadyApplied "
+                (click)="apply()"
+                class="btn btn-primary px-4 py-1">Apply</button>
+                <button type="button" *ngIf="data?.alreadyApplied "
+                [disabled]="true"
+                class="btn btn-primary px-4 py-1">Applied</button>
+               </div>
+         </div>
+        </div>
+    
+        </div>
+        </div>

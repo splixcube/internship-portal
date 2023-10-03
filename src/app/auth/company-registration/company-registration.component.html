@@ -1,37 +1,43 @@
+<form [formGroup]="registrationForm">
 <div class="row">
-  <div class="col-md-8 mx-auto">
-     <form [formGroup]="registrationForm">
-      <div class="form-group">
-        <label>Company Name</label>
+  <div class="col-md-8 mx-auto my-5">
+    <div class="custom-card">
+      <h1 class="my-3 title-card ps-2"> Company Registration</h1>
+      <div class="row">
+      <div class="form-group col-md-6">
+        <label>Company Name<span>*</span></label>
         <input type="text" class="form-control" formControlName="company_name"> 
       </div>
-      <div class="form-group">
-        <label>Company Address</label>
+      <div class="form-group col-md-6">
+        <label>Company Address<span>*</span></label>
         <input type="text" class="form-control" formControlName="company_address"> 
       </div>
-      <div class="form-group">
-        <label>Company State</label>
+      <div class="form-group col-md-6">
+        <label>Company State<span>*</span></label>
         <input type="text" class="form-control" formControlName="company_state"> 
       </div>
-      <div class="form-group">
-        <label>Company City</label>
+      <div class="form-group col-md-6">
+        <label>Company City<span>*</span></label>
         <input type="text" class="form-control" formControlName="company_city"> 
       </div>
-      <div class="form-group">
-        <label>Company Website</label>
+      <div class="form-group col-md-6">
+        <label>Company Website<span>*</span></label>
         <input type="text" class="form-control" formControlName="company_website"> 
+      
       </div>
-      <div class="form-group">
-        <label>Contact Email ID</label>
+      <div class="form-group col-md-6">
+        <label>Contact Email ID<span>*</span></label>
         <input type="email" class="form-control" formControlName="email"> 
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="text" class="form-control" formControlName="password"> 
+      <div class="form-group col-md-6">
+        <label>Password<span>*</span></label>
+        <input type="password" class="form-control" formControlName="password"> 
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-12 text-end">
         <button type="button"   [disabled]="!registrationForm.valid" (click)="submit()" class="btn btn-primary">Submit</button>
       </div>
-     </form>
+ </div>
+ </div>
   </div>
 </div>
+</form>

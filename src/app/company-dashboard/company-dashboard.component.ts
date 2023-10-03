@@ -14,11 +14,14 @@ constructor(public authService: AuthService,public commonService: CommonService)
     this.commonService.openLogoutDialog().subscribe((result) => {
       if (result == true) {
         this.authService.logout().then(res=>{
-          this.commonService.showToast(" Successfully")
+          this.commonService.showToast(" Successfully Logout")
         }).catch(err=>{
           this.commonService.showToast("Error Occoured")
         })
       }
     });
+  }
+  toggleClass() {
+    this.commonService.mobileSidebar = !this.commonService.mobileSidebar;
   }
 }

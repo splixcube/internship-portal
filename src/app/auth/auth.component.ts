@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-auth',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-
+  constructor(public commonService: CommonService){}
+  scrolltoContact(){
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  toggleClass() {
+    this.commonService.mobileSidebar = !this.commonService.mobileSidebar;
+  }
 }

@@ -15,6 +15,7 @@ import {
   signOut,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { CompanyService } from './company.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,8 @@ export class AuthService {
   firestore: Firestore = inject(Firestore);
   auth: Auth = inject(Auth);
   userData;
-  constructor(public common: CommonService, public router: Router) {
+  constructor(public common: CommonService,public companyService: CompanyService,
+     public router: Router) {
     onAuthStateChanged(this.auth, (state) => {
       console.log(state);
       if (state) {
@@ -47,6 +49,8 @@ export class AuthService {
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
       delete data.password;
       await setDoc(aDoccument, data);
+      localStorage.setItem('uid', res.user.uid);
+      localStorage.setItem('type', data.type);
       this.router.navigateByUrl('/company-dashboard');
       this.common.hideLoader();
     } catch (err) {
@@ -68,6 +72,8 @@ export class AuthService {
       const aDoccument = doc(this.firestore, `users/${res.user.uid}`);
       delete data.password;
       await setDoc(aDoccument, data);
+      localStorage.setItem('uid', res.user.uid);
+      localStorage.setItem('type', data.type);
       this.router.navigateByUrl('/student-dashboard');
       this.common.hideLoader();
     } catch (err) {
@@ -89,8 +95,24 @@ export class AuthService {
       let data: any = userdoc.data();
       localStorage.setItem('uid', res.user.uid);
       localStorage.setItem('type', data.type);
+      if(localStorage.getItem('type') == 'student'){
+        this.router.navigateByUrl('/student-dashboard');
+      }
+      else{
+        this.companyService.getMyInternships().subscribe(res =>
+          {
+if(res.length == 0){
+  this.router.navigateByUrl('/company-dashboard/create-internship');
+}
+else{
+  this.router.navigateByUrl('/company-dashboard');
+}
+          })
+      
+      }
       return true;
     } catch (err: any) {
+      this.common.showError(err)
       throw {
         message: err.error ?? 'Account does not exist with given credentials',
       };
@@ -115,24 +137,35 @@ export class AuthService {
         message: err.error ?? 'Account does not exist with given credentials',
       };
     }
-  }
+  } 
 
   isAuthenticated() {
     return localStorage.getItem('uid');
   }
-
+  isType() {
+    return localStorage.getItem('type');
+  }
+  getUid(){
+   return localStorage.getItem('uid');
+  }
   async logout() {
     await signOut(this.auth);
     if (localStorage.getItem('type') == 'company') {
       localStorage.clear()
-      this.router.navigateByUrl('/auth/company-signin');
+      this.router.navigateByUrl('/auth');
     } else {
       localStorage.clear()
-      this.router.navigateByUrl('/auth/student-signin');
+      this.router.navigateByUrl('/auth');
     }
   }
 
   get profileData() {
     return this.userData;
+  }
+  async getProfileData(){
+    let uid = this.getUid();
+    const aDoccument = doc(this.firestore, `users/${uid}`);
+    let item = (await getDoc(aDoccument)).data();
+    return item;
   }
 }

@@ -8,6 +8,7 @@ import { ConfirmModalComponent } from '../shared/confirm-modal/confirm-modal.com
 })
 export class CommonService {
   loader = false;
+  mobileSidebar = false;
   constructor(private _snackBar: MatSnackBar, public dialog: MatDialog) {}
 
   showLoader() {
@@ -44,6 +45,17 @@ export class CommonService {
       data: {
         title: 'Logout Confirmation',
         message: 'Do you want to logout?',
+      },
+    });
+    return dialogRef.afterClosed();
+  }
+  openCustomDialog( message:any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'custom-dialog';
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      data: {
+        title: 'Confirmation',
+        message: message,
       },
     });
     return dialogRef.afterClosed();

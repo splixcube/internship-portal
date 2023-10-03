@@ -23,7 +23,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { MatTableModule } from '@angular/material/table';
@@ -36,6 +36,8 @@ import { CompanyProfileComponent } from './company-dashboard/company-profile/com
 import { ViewInternshipComponent } from './shared/view-internship/view-internship.component';
 import { ViewCompanyComponent } from './shared/view-company/view-company.component';
 import { ViewStudentComponent } from './shared/view-student/view-student.component';
+import { HomeComponent } from './auth/home/home.component';
+import { SidebarAuthComponent } from './shared/sidebar-auth/sidebar-auth.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ViewStudentComponent } from './shared/view-student/view-student.compone
     CompanyProfileComponent,
     ViewInternshipComponent,
     ViewCompanyComponent,
-    ViewStudentComponent
+    ViewStudentComponent,
+    HomeComponent,
+    SidebarAuthComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,7 @@ import { ViewStudentComponent } from './shared/view-student/view-student.compone
     MatInputModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

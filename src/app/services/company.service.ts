@@ -33,6 +33,11 @@ export class CompanyService {
     let item = (await getDoc(aDoccument)).data();
     return item;
   }
+  async getSingleStudentsApplied(id:any){
+    const aDoccument = doc(this.firestore, `applied/${id}`);
+    let item = (await getDoc(aDoccument)).data();
+    return item;
+  }
   getMyInternships() {
     const aCollection = collection(this.firestore, 'internships');
     const q = query(
@@ -56,7 +61,13 @@ export class CompanyService {
     const q = query(aCollection, where('internship.id', '==', internshipId));
     return collectionData(q, { idField: 'id' });
   }
-
+  updateStudentsApplied(id,data){
+    const aDoc = doc(
+      this.firestore,
+      `applied/${id}`
+    );
+    return updateDoc(aDoc, data);
+  }
   updateProfile(data) {
     const aDoc = doc(
       this.firestore,

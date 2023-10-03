@@ -48,7 +48,7 @@ export class CreateEditInternshipComponent {
 
           let res = await  this.companyService.updateInternship(this.id,this.internshipForm.value)
           this.router.navigateByUrl("/company-dashboard")
-           this.commonService.showToast('success update')
+           this.commonService.showToast('Successfully update internship')
          }
          catch(err){
            this.commonService.showError(err)
@@ -59,7 +59,7 @@ export class CreateEditInternshipComponent {
         try{
           let res = await this.companyService.addInternship(this.internshipForm.value)
           this.router.navigateByUrl("/company-dashboard")
-          this.commonService.showToast('success create')
+          this.commonService.showToast('Successfully create internship')
          }
          catch(err){
            this.commonService.showError(err)

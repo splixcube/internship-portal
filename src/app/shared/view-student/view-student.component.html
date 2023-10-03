@@ -1,7 +1,73 @@
 <div class="row my-5">
   <div class="col-md-10 mx-auto">
-     <div class="card">
-      
+    <div class="custom-card">
+      <button type="button" 
+      (click)="back()"
+      class="btn btn-primary px-4 py-1"><i class="fa-solid fa-arrow-left text-white mx-1"></i>Back</button>
+      <h1 class="my-3 title-card ps-2">Student Details</h1>
+  <div class="row">
+      <div class="col-md-12 my-2">
+        <div class="d-block d-md-flex">
+          <div class="sub-heading">
+        <span class="label">Full Name: </span></div>
+         <span>{{data?.student.first_name }} {{data?.student.last_name }}</span></div>
+      </div> 
+       <div class="col-md-12 my-2">
+        <div class="d-block d-md-flex">
+          <div class="sub-heading">
+        <span class="label">School District: </span> </div>
+        <span>{{data?.student.school_district }}</span></div>
+       </div>
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">School Name: </span> </div>
+            <span>{{data?.student.school_name }}</span></div>
+           </div> 
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">Email: </span></div>
+             <span>{{data?.student.email }}</span></div>
+           </div> 
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">Dob: </span></div>
+             <span>{{data?.student.dob_name | date: 'dd/MM/yyyy' }}</span></div>
+           </div>
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">State: </span>
+            </div> <span>{{data?.student.state }}</span></div>
+           </div> 
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">Freshman: </span></div>
+             <span *ngFor="let item of data.student.freshman">{{item }},</span></div>
+           </div> 
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">Sophomore: </span></div>
+             <span *ngFor="let item of data.student.sophomore">{{item }},</span></div>
+           </div> 
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">Junior: </span></div>
+             <span *ngFor="let item of data.student.junior">{{item }},</span></div>
+           </div> 
+           <div class="col-md-12 my-2">
+            <div class="d-block d-md-flex">
+              <div class="sub-heading">
+            <span class="label">Senior: </span></div>
+             <span *ngFor="let item of data.student.senior">{{item }},</span></div>
+           </div> 
      </div>
+    </div>
+
     </div>
     </div>

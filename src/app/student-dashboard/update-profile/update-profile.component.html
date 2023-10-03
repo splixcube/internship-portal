@@ -1,75 +1,102 @@
+<form [formGroup]="profileForm">
 <div class="row">
   <div class="col-md-8 mx-auto">
-     <form [formGroup]="profileForm">
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" class="form-control" formControlName="first_name"> 
+    <div class="custom-card">
+      <h1 class="my-3 title-card ps-2"> Student Profile</h1>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>First Name</label>
+          <input type="text" class="form-control" formControlName="first_name"> 
+        </div>
+        <div class="form-group col-md-6">
+          <label>Last Name</label>
+          <input type="text" class="form-control" formControlName="last_name"> 
+        </div>
+        <div class="form-group col-md-6">
+          <label>DOB Name</label>
+          <input type="date" class="form-control" formControlName="dob_name"> 
+        </div>
+        <div class="form-group col-md-6">
+          <label>State</label>
+          <input type="text" class="form-control" formControlName="state">
+          
+        </div>
+        <div class="form-group col-md-6">
+          <label>District</label>
+          <input type="text" class="form-control" formControlName="school_district">
+        
+        </div>
+        <div class="form-group col-md-6">
+          <label>School Name</label>
+          <input type="text" class="form-control" formControlName="school_name"> 
+        </div>
+        <div class="form-group col-md-6">
+          <label>Contact Email ID</label>
+          <input type="email" [readOnly]="true" class="form-control" formControlName="email"> 
+        </div>
+        <div class="col-md-6"></div>
+        <div class="form-group col-md-6">
+          <label>Freshman</label> 
+          <div class="d-flex align-items-start">
+          <div class="d-block" formArrayName="freshman">
+            <div class="d-flex align-items-center" *ngFor="let item of freshman.controls; let i = index">
+              <input type="text" class="form-control mt-2" [formControlName]="i" />
+  
+              <i class="fa-solid fa-trash mx-2 pointer" (click)="removeFreshman(i)"></i>
+            <!--   <button type="button"  class="btn btn-primary" (click)="removeFreshman(i)">Remove</button> -->
+            </div>
+           
+          </div>
+          <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addFreshman()"></i>
+       </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Sophomore</label> 
+          <div class="d-flex align-items-start">
+          <div class="d-block " formArrayName="sophomore">
+            <div class="d-flex align-items-center" *ngFor="let item of sophomore.controls; let i = index">
+              <input type="text" class="form-control mt-2" [formControlName]="i" />
+              <i class="fa-solid fa-trash mx-2 pointer " (click)="removeSophomore(i)"></i>
+            <!--   <button type="button"  class="btn btn-primary" (click)="removeSophomore(i)">Remove</button> -->
+            </div>
+          
+          </div>
+          <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addSophomore()"></i>
+          </div>
+       
+  <!--         <button type="button"  class="btn btn-primary" (click)="addSophomore()">Add Item</button> -->
+        </div>
+        <div class="form-group col-md-6">
+          <label>Junior</label> 
+          <div class="d-flex align-items-start">
+          <div class="d-block" formArrayName="junior">
+            <div class="d-flex align-items-center" *ngFor="let item of junior.controls; let i = index">
+              <input type="text" class="form-control mt-2" [formControlName]="i" />
+              <i class="fa-solid fa-trash mx-2 pointer" (click)="removeJunior(i)"></i>
+             <!--  <button type="button"  class="btn btn-primary" (click)="removeJunior(i)">Remove</button> -->
+            </div>
+           
+          </div>
+          <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addJunior()"></i>
+         </div>
+     </div>
+        <div class="form-group col-md-6">
+          <label>Senior</label> 
+          <div class="d-flex align-items-start">
+          <div class="d-block" formArrayName="senior">
+            <div class="d-flex align-items-center" *ngFor="let item of senior.controls; let i = index">
+              <input type="text" class="form-control mt-2" [formControlName]="i" />
+              <i class="fa-solid fa-trash mx-2 pointer" (click)="removeSenior(i)"></i>
+            </div>
+          </div>
+          <i class="fa-solid fa-plus mx-2 mt-3 pointer" (click)="addSenior()"></i>
+        </div>
+         </div>
+        <div class="form-group col-md-12 text-end">
+          <button type="button"   [disabled]="!profileForm.valid" (click)="submit()" class="btn btn-primary">Update</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" class="form-control" formControlName="last_name"> 
-      </div>
-      <div class="form-group">
-        <label>DOB Name</label>
-        <input type="date" class="form-control" formControlName="dob_name"> 
-      </div>
-      <div class="form-group">
-        <label>State</label>
-        <select formControlName="state" class="form-control form-select">
-          <option>Select State</option>
-          <option  value="london">london</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>School District</label>
-        <select formControlName="school_district" class="form-control form-select">
-          <option>Select district</option>
-          <option  value="vancour">vancour</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>School Name</label>
-        <input type="text" class="form-control" formControlName="school_name"> 
-      </div>
-      <div class="form-group">
-        <label>Contact Email ID</label>
-        <input type="email" class="form-control" formControlName="email"> 
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="text" class="form-control" formControlName="password"> 
-      </div>
-      <div class="form-group">
-        <label>Freshman</label>
-        <select formControlName="freshman" class="form-control form-select">
-          <option>Select Freshman</option>
-          <option value="freshman">Freshman</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Sophomore</label>
-        <select formControlName="sophomore" class="form-control form-select">
-          <option>Select Sophomore</option>
-          <option  value="sophomore">sophomore</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Junior</label>
-        <select formControlName="junior" class="form-control form-select">
-          <option>Select Junior</option>
-          <option  value="junior">Junior</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Senior</label>
-        <select formControlName="senior" class="form-control form-select">
-          <option>Select Senior</option>
-          <option  value="senior"> Senior</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button type="button"   [disabled]="!profileForm.valid" (click)="submit()" class="btn btn-primary">Submit</button>
-      </div>
-     </form>
+</div>
   </div>
 </div>
+</form>

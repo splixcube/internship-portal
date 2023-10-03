@@ -1,20 +1,54 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse w-100 justify-content-end " id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="/student-dashboard" href="#">Internship List</a>
-        <a class="nav-link" routerLink="/student-dashboard/applied" href="#">Applied Internship</a>
-        <a class="nav-link" routerLink="/student-dashboard/profile" href="#">Profile</a>
-        <a class="nav-link" (click)="logout()" href="#">Logout</a>
+
+<div class="header">
+  <nav class="navbar navbar-expand-lg p-0 position-relative">
+    <div class="container-fluid">
+      <img src="../assets/images/logo.png"
+           class="pointer"
+           style="width: 135px;">
+      <i class="fa-solid fa-bars text-primary d-block d-lg-none"
+      (click)="toggleClass()"
+         style="font-size: 25px;"></i>
+      <div class="collapse navbar-collapse justify-content-end"
+           id="navbarSupportedContent">
+        <div class="d-flex justify-content-around align-item-center  mt-2 ">
+         
+          <div class="dropdown">
+            <a><button class="btn nav-li"
+                    [routerLink]="['/student-dashboard']"
+                    type="button">
+                    Internship List
+            </button></a>
+          </div>
+          <div class="dropdown">
+            <a><button class="btn nav-li"
+              [routerLink]="['/student-dashboard/applied']"
+                    type="button">
+                    Applied Internship
+            </button></a>
+          </div>
+          <div class="dropdown">
+            <button class="btn nav-li"
+                    [routerLink]="['/student-dashboard/profile']"
+                    type="button">
+                    Profile
+            </button>
+          </div>
+          <div class="dropdown p-2">
+            <span class="pointer nav-li" (click)="logout()"> Logout <i class="fa-solid fa-right-from-bracket mx-1"></i></span>
+            </div>
+        </div>
       </div>
     </div>
+  </nav>
+</div>
+<!-- SIDEBAR -->
+<div class="wrapper-sidebar d-flex" *ngIf="commonService.mobileSidebar">
+  <div >
+    <app-sidebar-auth *ngIf="commonService.mobileSidebar"></app-sidebar-auth>
   </div>
-</nav>
-
-<div class="container">
+<div (click)="toggleClass()"  style="background-color: rgba(0, 0, 0, 0.409); width: calc(100% - 250px);">
+</div>
+</div>
+<div class="container py-3 top-80">
   <router-outlet></router-outlet>
 </div>

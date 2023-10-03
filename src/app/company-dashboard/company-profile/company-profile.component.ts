@@ -21,23 +21,32 @@ export class CompanyProfileComponent {
   constructor(public fb: FormBuilder,public authService: AuthService,
     public commonService: CommonService,
     public companyService: CompanyService) {}
-  ngOnInit(): void {
-    setTimeout(() => {
-      if(this.authService.profileData){
-        console.log(this.authService.profileData)
-        this.profileForm.patchValue(this.authService.profileData) 
-      }
-    }, 2000);
-   
+  async ngOnInit() {
+
+    try{
+      this.commonService.showLoader();
+      let res:any = await this.authService.getProfileData(); 
+        this.profileForm.patchValue(res);
+        this.commonService.hideLoader();
+    }
+    catch(err){
+      this.commonService.showError(err);
+      this.commonService.hideLoader();
+    }
+     
   }
  async submit(){
+  this.commonService.showLoader();
     try{
 
      let res = await this.companyService.updateProfile(this.profileForm.value)
-      this.commonService.showToast('success update')
+      this.commonService.showToast('Successfully update profile')
+      this.commonService.hideLoader();
     }
     catch(err){
+      this.commonService.hideLoader();
       this.commonService.showError(err)
     }
   }
+  
 }

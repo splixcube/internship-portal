@@ -1,5 +1,13 @@
 <div class="row my-5">
-  <div class="col-md-10 mx-auto">
+  <div class="col-md-10 mx-auto" *ngIf="list?.length">
+    <h1 class="my-3 title-card ps-2">Applied Internship</h1>
+    <div class="py-2">
+      <input class="form-control search-box"
+             matInput
+             type="text"
+             (keyup)="doFilter($event)"
+             placeholder="Search">
+    </div>
     <div class="table-container">
       <table mat-table
              [dataSource]="dataSource"
@@ -30,7 +38,15 @@
           <td mat-cell
               style="width: 60px;"
               *matCellDef="let element">
-              {{element.status}}
+             <span *ngIf="element.status == 'accept'">
+             Accept
+             </span> 
+             <span *ngIf="element.status == 'applied'">
+              Applied
+             </span> 
+             <span *ngIf="element.status == 'reject'">
+              Reject
+             </span> 
           </td>
     
         </ng-container>
@@ -42,4 +58,7 @@
       </table>
     </div>
   </div>
+  <div class="col-md-10 mx-auto" *ngIf="!list?.length">
+<h3 class="text-center">No applied internship</h3>
+    </div>
 </div>
