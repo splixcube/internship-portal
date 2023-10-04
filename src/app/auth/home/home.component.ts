@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute,public authService: AuthService, 
+    private router: Router) {}
   ngOnInit(): void {
-    this.route.fragment.subscribe((fragment: string) => {
-      console.log(fragment,"fragment")
-      if (fragment) {
-        const element = document.getElementById('about');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
   }
 }

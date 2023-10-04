@@ -18,11 +18,14 @@
       </div>
       <div class="form-group col-md-6">
         <label>State<span>*</span></label>
-        <input type="text" class="form-control" formControlName="state">
-        
+       <!--  <input type="text" class="form-control" formControlName="state"> -->
+        <select class="form-control form-select" formControlName="state">
+          <option value="" disabled>Select State</option>
+          <option *ngFor="let item of state" [value]="item">{{item}}</option>
+        </select>
       </div>
       <div class="form-group col-md-6">
-        <label>District<span>*</span></label>
+        <label>School District<span>*</span></label>
         <input type="text" class="form-control" formControlName="school_district">
       
       </div>

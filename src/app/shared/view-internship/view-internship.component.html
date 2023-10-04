@@ -59,12 +59,15 @@
                  <span>{{data?.last_apply_date | date: 'dd/MM/yyyy'}}</span></div>
                </div> 
                <div class="col-md-12 text-center" *ngIf="authService.isType() == 'student'">
-             <button type="button" *ngIf="!data?.alreadyApplied "
+             <button type="button" *ngIf="!data?.alreadyApplied && !checkDate(data.last_apply_date)"
                 (click)="apply()"
                 class="btn btn-primary px-4 py-1">Apply</button>
                 <button type="button" *ngIf="data?.alreadyApplied "
                 [disabled]="true"
                 class="btn btn-primary px-4 py-1">Applied</button>
+                <button type="button" *ngIf="!data.alreadyApplied && checkDate(data.last_apply_date)"
+              [disabled]="checkDate(data.last_apply_date)"
+              class="btn btn-primary px-4 py-1">Expired</button>
                </div>
          </div>
         </div>

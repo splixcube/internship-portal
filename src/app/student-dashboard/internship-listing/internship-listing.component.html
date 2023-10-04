@@ -48,19 +48,19 @@
               <button type="button"
               (click)="viewItem(element)"
               class="btn btn-primary mx-2 px-4 py-1">View</button>
-              <button type="button" *ngIf="!element.alreadyApplied "
+
+              <button type="button" *ngIf="!element.alreadyApplied && !checkDate(element.last_apply_date)"
               (click)="apply(element)"
               class="btn btn-primary px-4 py-1">Apply</button>
+
               <button type="button" *ngIf="element.alreadyApplied "
               [disabled]="true"
               class="btn btn-primary px-4 py-1">Applied</button>
-       <!--      <button type="button"
-                      (click)="editItem(element)"
-                      class="btn btn-primary px-4 py-1">Edit</button>
-              <button type="button"
-                      (click)="deleteItem(element)"
-                      class="btn btn-primary px-4 py-1 ms-2">Delete</button>   -->
-            </div>
+
+              <button type="button" *ngIf="!element.alreadyApplied && checkDate(element.last_apply_date)"
+              [disabled]="checkDate(element.last_apply_date)"
+              class="btn btn-primary px-4 py-1">Expired</button>
+      </div>
           </td>
     
         </ng-container>

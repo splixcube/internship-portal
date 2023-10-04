@@ -21,20 +21,22 @@ import { ViewStudentComponent } from './shared/view-student/view-student.compone
 import { ViewInternshipComponent } from './shared/view-internship/view-internship.component';
 import { ViewCompanyComponent } from './shared/view-company/view-company.component';
 import { HomeComponent } from './auth/home/home.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
-    path: 'auth',
+    path: '',
     component: AuthComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
    
       { path: 'login', component: StudentLoginComponent },
       { path: 'student-registration', component: StudentRegistrationComponent },
-     /*  { path: 'company-login', component: CompanyLoginComponent }, */
+     { path: 'forgot-password', component: ForgotPasswordComponent }, 
       { path: 'company-registration', component: CompanyRegistrationComponent },
-      { path: ':fragment', component: HomeComponent },
-    ],
+     
+    ]
   },
   {
     path: 'student-dashboard',
@@ -62,9 +64,9 @@ const routes: Routes = [
       { path: 'view-internship/:id', component: ViewInternshipComponent },
       { path: 'view-company/:id', component: ViewCompanyComponent },
     ],
-   canActivate: [AuthGuardService, CompanyGuardService], 
+    canActivate: [AuthGuardService, CompanyGuardService], 
   },
-  { path: '**', redirectTo: '/auth' },
+   { path: '**', redirectTo: '/home' }, 
 ];
 
 @NgModule({

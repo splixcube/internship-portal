@@ -12,18 +12,20 @@
 </div>
 <div class="row">
   <div class="col-md-6 mx-auto">
-    <div class="row">
+    <div class="row" >
       <div class="col-md-4 mt-2">
-        <button type="button" class="btn btn-primary w-100" [routerLink]="['/auth/student-registration']" >Student Registration</button>
+        <button type="button" class="btn btn-primary w-100" [routerLink]="['/student-registration']" >Student Registration</button>
 
       </div>
       <div class="col-md-4 mt-2">
-        <button type="button" class="btn btn-primary w-100" [routerLink]="['/auth/company-registration']" >Company Registration</button>
+        <button type="button" class="btn btn-primary w-100" [routerLink]="['/company-registration']" >Company Registration</button>
 
       </div>
       <div class="col-md-4 mt-2">
-        <button type="button" class="btn btn-primary w-100" [routerLink]="['/auth/login']" >Login</button>
-
+        <button type="button" *ngIf="!authService.isAuthenticated()" class="btn btn-primary w-100" [routerLink]="['/login']" >Login</button>
+        <button type="button" *ngIf="authService.isType() == 'student'" class="btn btn-primary w-100" [routerLink]="['/student-dashboard']" >Dashboard</button>
+        <button type="button" *ngIf="authService.isType() == 'company'" class="btn btn-primary w-100" [routerLink]="['/company-dashboard']" >Dashboard</button>
+  
       </div>
     </div>
  <!--    <div class="d-flex justify-content-around ">
@@ -58,4 +60,47 @@
     </div>
   </div>
   
+</div>
+
+<div class="row my-5">
+  <div class="col-md-10 mx-auto">
+    <div class="row">
+  <div class="col-md-4">
+    <div class="custom-card text-center p-3 ">
+      <div class="text-center mb-4">
+        <i class="fa-solid fa-envelope "></i>
+      </div>
+      <h3 class="text-primary">Contact for general support
+      </h3>
+      <div class="text-center mb-3">
+      <a href="mailto:contactus.highschoolintern@gmail.com" class="my-3">contactus.highschoolintern@gmail.com</a>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="custom-card text-center p-3">
+      <div class="text-center mb-4">
+        <i class="fa-solid fa-envelope "></i>
+      </div>
+      <h3 class="text-primary">contact to become a contributor
+      </h3>
+      <div class="text-center mb-3">
+      <a href="mailto:developer.highschoolintern@gmail.com" class="my-3">developer.highschoolintern@gmail.com</a>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="custom-card text-center p-3">
+      <div class="text-center mb-4">
+        <i class="fa-solid fa-envelope "></i>
+      </div>
+      <h3 class="text-primary">contact to request for enhancement
+      </h3>
+      <div class="text-center mb-3">
+        <a href="mailto:enhancements.highschoolintern@gmail.com" class="my-3">enhancements.highschoolintern@gmail.com</a>
+
+      </div>
+    </div>
+  </div>
+  </div></div>
 </div>

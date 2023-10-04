@@ -26,7 +26,7 @@ export class StudentLoginComponent {
     }
     catch (err: any) {
       localStorage.clear()
-      this.commonService.showError(err)
+      this.commonService.showError(err.message)
     }
   }
 }

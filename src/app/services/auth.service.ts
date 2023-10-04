@@ -11,6 +11,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from '@angular/fire/auth';
@@ -112,7 +113,7 @@ else{
       }
       return true;
     } catch (err: any) {
-      this.common.showError(err)
+      this.common.showError('Invalid Login Credentials');
       throw {
         message: err.error ?? 'Account does not exist with given credentials',
       };
@@ -152,10 +153,10 @@ else{
     await signOut(this.auth);
     if (localStorage.getItem('type') == 'company') {
       localStorage.clear()
-      this.router.navigateByUrl('/auth');
+      this.router.navigateByUrl('/home');
     } else {
       localStorage.clear()
-      this.router.navigateByUrl('/auth');
+      this.router.navigateByUrl('/home');
     }
   }
 
@@ -167,5 +168,18 @@ else{
     const aDoccument = doc(this.firestore, `users/${uid}`);
     let item = (await getDoc(aDoccument)).data();
     return item;
+  }
+
+  async forgetPassword(data: any) {
+    try {
+      let res = await sendPasswordResetEmail(this.auth, data.email);
+
+      return true;
+    } catch (err: any) {
+      this.common.showError('Invalid Email')
+      throw {
+        message: err.message,
+      };
+    }
   }
 }

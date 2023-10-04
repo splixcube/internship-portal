@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -11,27 +12,29 @@ export class SidebarAuthComponent {
   authMenu:any =[
     {
       text: 'Home',
-      link: '/auth'
+      link: '/home'
     },
     {
       text: 'About',
-      link: '/auth'
+      link: '/home',
+      id: 'about'
     },
     {
       text: 'Student Registration',
-      link: '/auth/student-registration'
+      link: '/student-registration'
     },
     {
       text: 'Company Registration',
-      link: '/auth/company-registration'
+      link: '/company-registration'
     },
     {
       text: 'Login',
-      link: '/auth/login'
+      link: '/login'
     },
     {
       text: 'Contact Us',
-      link: '/auth'
+      link: '/home',
+      id: 'contact'
     }
   ]
   studentMenu:any =[
@@ -63,7 +66,8 @@ export class SidebarAuthComponent {
     }
   ]
   menuList:any=[];
-  constructor(public commonService: CommonService,public authService: AuthService){}
+  constructor(public commonService: CommonService,public router: Router,
+    public authService: AuthService){}
 
   ngOnInit(): void {
     console.log(this.authService.isAuthenticated(),this.authService.isType())
@@ -91,5 +95,37 @@ export class SidebarAuthComponent {
         })
       }
     });
+  }
+  goTo(item:any){
+    this.toggleClass()
+    if(item.link && !item.id){
+      console.log('ds')
+      this.router.navigate([item.link])
+    }
+    else{
+      if(item.id == 'about'){
+        console.log('a')
+        this.router.navigate([item.link])
+        this.scrollToAbout()
+      }
+      else{
+        console.log('c')
+        this.router.navigate([item.link])
+this.scrolltoContact()
+      }
+    }
+   
+  }
+  scrolltoContact(){
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  scrollToAbout(){
+    const element = document.getElementById('about');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

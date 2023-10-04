@@ -27,7 +27,17 @@ export class InternshipListingComponent {
       res[i].alreadyApplied = 'yes';
     }
   }
-  this.dataSource = new MatTableDataSource<any>(res);
+  let result = res.filter(ele => {
+    if(this.checkDate(ele.last_apply_date)){
+      return false;
+    }
+    else{
+return true;
+    }
+  
+  })
+  console.log(result,"result")
+  this.dataSource = new MatTableDataSource<any>(result);
 },
 (error) => {
   this.commonService.showError("Failed")
@@ -61,4 +71,33 @@ export class InternshipListingComponent {
   doFilter = (event: any) => {
     this.dataSource.filter = event.target.value.trim().toLocaleLowerCase();
   };
+  checkDate(date:any){
+    let todayDate = this.formatedDate()
+    var parts = date.split('-');
+var year = parts[0];
+var month = parts[1];
+var day = parts[2];
+
+var formattedDate = day + '/' + month + '/' + year;
+
+    if (formattedDate < todayDate){
+ return true;
+    }
+    else{
+      return false;
+    }
+  }
+  formatedDate(){
+    var date = new Date();
+
+var day = date.getDate();
+var month = date.getMonth() + 1; 
+var year = date.getFullYear();
+
+var formattedDate = this.padNumber(day) + '/' + this.padNumber(month) + '/' + year;
+  return formattedDate;
+}
+   padNumber(number) {
+    return (number < 10 ? '0' : '') + number;
+  }
 }

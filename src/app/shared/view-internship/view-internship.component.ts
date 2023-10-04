@@ -75,4 +75,34 @@ export class ViewInternshipComponent {
       });
     
       }
+
+      checkDate(date:any){
+        let todayDate = this.formatedDate()
+        var parts = date.split('-');
+    var year = parts[0];
+    var month = parts[1];
+    var day = parts[2];
+    
+    var formattedDate = day + '/' + month + '/' + year;
+   
+        if (formattedDate < todayDate){
+     return true;
+        }
+        else{
+          return false;
+        }
+      }
+      formatedDate(){
+        var date = new Date();
+    
+    var day = date.getDate();
+    var month = date.getMonth() + 1; 
+    var year = date.getFullYear();
+    
+    var formattedDate = this.padNumber(day) + '/' + this.padNumber(month) + '/' + year;
+      return formattedDate;
+    }
+       padNumber(number) {
+        return (number < 10 ? '0' : '') + number;
+      }
 }

@@ -12,7 +12,7 @@ export class StudentGuardService implements CanActivate {
     if (localStorage.getItem('type') == 'student') {
       return true;
     } else {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/company-dashboard']);
       return false;
     }
   }

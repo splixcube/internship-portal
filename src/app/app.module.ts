@@ -38,6 +38,7 @@ import { ViewCompanyComponent } from './shared/view-company/view-company.compone
 import { ViewStudentComponent } from './shared/view-student/view-student.component';
 import { HomeComponent } from './auth/home/home.component';
 import { SidebarAuthComponent } from './shared/sidebar-auth/sidebar-auth.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SidebarAuthComponent } from './shared/sidebar-auth/sidebar-auth.compone
     ViewCompanyComponent,
     ViewStudentComponent,
     HomeComponent,
-    SidebarAuthComponent
+    SidebarAuthComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

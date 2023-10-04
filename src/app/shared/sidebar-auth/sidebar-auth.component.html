@@ -2,8 +2,8 @@
   <div class="menu pt-3">
     <div class="dropdown my-2" *ngFor="let item of menuList">
       <a><button class="btn nav-li"
-        (click)="toggleClass()"
-              [routerLink]="[item.link]"
+        (click)="goTo(item)"
+             
               type="button">
         {{item.text}}
       </button></a>

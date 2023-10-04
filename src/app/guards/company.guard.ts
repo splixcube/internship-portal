@@ -11,7 +11,7 @@ export class CompanyGuardService implements CanActivate {
     if (localStorage.getItem('type') == 'company') {
       return true;
     } else {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/student-dashboard']);
       return false;
     }
   }
