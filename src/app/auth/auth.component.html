@@ -67,6 +67,22 @@
             </button>
           </div>
           <div class="dropdown">
+            <button class="btn nav-li"
+            *ngIf="authService.isType() == 'student'"
+                    [routerLink]="['/student-dashboard']"
+                    type="button">
+              Dasboard
+            </button>
+          </div>
+          <div class="dropdown">
+            <button class="btn nav-li"
+            *ngIf="authService.isType() == 'company'"
+                    [routerLink]="['/company-dashboard']"
+                    type="button">
+              Dasboard
+            </button>
+          </div>
+          <div class="dropdown">
             <a >
             <button class="btn nav-li"
              (click)="scrolltoContact()"
