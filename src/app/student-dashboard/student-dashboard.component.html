@@ -13,28 +13,28 @@
            id="navbarSupportedContent">
         <div class="d-flex justify-content-around align-item-center  ">
          
-          <div class="dropdown">
+          <div class="dropdown my-auto">
             <a><button class="btn nav-li"
                     [routerLink]="['/student-dashboard']"
                     type="button">
-                    Internship List
+                   Search Internship
             </button></a>
           </div>
-          <div class="dropdown">
+          <div class="dropdown my-auto">
             <a><button class="btn nav-li"
               [routerLink]="['/student-dashboard/applied']"
                     type="button">
                     Applied Internship
             </button></a>
           </div>
-          <div class="dropdown">
+          <div class="dropdown my-auto">
             <button class="btn nav-li"
                     [routerLink]="['/student-dashboard/profile']"
                     type="button">
-                    Profile
+                    Profile <i class="fa-solid fa-user shadow profile-icon ms-2"></i>
             </button>
           </div>
-          <div class="dropdown p-2">
+          <div class="dropdown my-auto p-2">
             <span class="pointer nav-li" (click)="logout()"> Logout <i class="fa-solid fa-right-from-bracket mx-1"></i></span>
             </div>
         </div>
@@ -45,7 +45,7 @@
 <!-- SIDEBAR -->
 <div class="wrapper-sidebar d-flex" *ngIf="commonService.mobileSidebar">
   <div >
-    <app-sidebar-auth *ngIf="commonService.mobileSidebar"></app-sidebar-auth>
+    <app-sidebar-auth [menuList]="commonService.studentMenu" *ngIf="commonService.mobileSidebar"></app-sidebar-auth>
   </div>
 <div (click)="toggleClass()"  style="background-color: rgba(0, 0, 0, 0.409); width: calc(100% - 250px);">
 </div>

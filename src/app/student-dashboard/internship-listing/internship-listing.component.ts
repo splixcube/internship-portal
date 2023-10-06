@@ -36,7 +36,6 @@ return true;
     }
   
   })
-  console.log(result,"result")
   this.dataSource = new MatTableDataSource<any>(result);
 },
 (error) => {

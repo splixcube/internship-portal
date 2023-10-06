@@ -8,6 +8,7 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./student-dashboard.component.scss']
 })
 export class StudentDashboardComponent {
+  menuList:any;
   constructor(public authService: AuthService,public commonService:CommonService){}
 
   logout(){

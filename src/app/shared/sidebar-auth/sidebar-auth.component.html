@@ -1,20 +1,47 @@
 <div class="side">
-  <div class="menu pt-3">
+  <div class="menu pt-3"
+ >
     <div class="dropdown my-2" *ngFor="let item of menuList">
-      <a><button class="btn nav-li"
+      <a ><button class="btn nav-li"
         (click)="goTo(item)"
-             
               type="button">
         {{item.text}}
       </button></a>
     </div>
-  
-    <div class="dropdown my-2" *ngIf="this.authService.isAuthenticated()">
+    <div class="dropdown my-2">
+      <button class="btn nav-li"
+      *ngIf="!authService.isAuthenticated()"
+              [routerLink]="['/login']"
+              (click)="toggleClass()"
+              type="button">
+        Login
+      </button>
+    </div>
+    <div class="dropdown my-2">
+      <button class="btn nav-li"
+      *ngIf="authService.isType() == 'student' && showDashboard "
+              [routerLink]="['/student-dashboard']"
+              (click)="toggleClass()"
+              type="button">
+        Dashboard
+      </button>
+    </div>
+    <div class="dropdown my-2">
+      <button class="btn nav-li"
+      *ngIf="authService.isType() == 'company' && showDashboard"
+              [routerLink]="['/company-dashboard']"
+              (click)="toggleClass()"
+              type="button">
+        Dashboard
+      </button>
+    </div>
+    <div class="dropdown my-2" *ngIf="this.authService.isAuthenticated() && !showDashboard">
       <a >
       <button class="btn nav-li" (click)="logout()"
               type="button">
        Logout
       </button></a>
     </div>
-  </div>
+  </div> 
+
 </div>

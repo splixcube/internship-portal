@@ -8,15 +8,27 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
+  menuList:any;
   constructor(public commonService: CommonService,public authService: AuthService){}
   scrolltoContact(){
-    const element = document.getElementById('contact');
+    setTimeout(() => {
+      const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    }, 1000);
+    
   }
   scrollToAbout(){
+    setTimeout(() => {
     const element = document.getElementById('about');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, 1000);
+  }
+  scrollToHome(){
+    const element = document.getElementById('home');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

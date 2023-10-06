@@ -51,7 +51,19 @@
                   <div class="sub-heading">
                 <span class="label">Minimum Requirenment: </span> </div>
                 <span>{{data?.minimum_requirenment }}</span></div>
+               </div>
+               <div class="col-md-12 my-2">
+                <div class="d-block d-md-flex">
+                  <div class="sub-heading">
+                <span class="label">Internship Start Date: </span></div>
+                 <span>{{data?.internship_start | date: 'dd/MM/yyyy'}}</span></div>
                </div> 
+               <div class="col-md-12 my-2">
+                <div class="d-block d-md-flex">
+                  <div class="sub-heading">
+                <span class="label">Internship End Date: </span></div>
+                 <span>{{data?.internship_end | date: 'dd/MM/yyyy'}}</span></div>
+               </div>  
                <div class="col-md-12 my-2">
                 <div class="d-block d-md-flex">
                   <div class="sub-heading">

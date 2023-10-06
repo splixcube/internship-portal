@@ -9,6 +9,89 @@ import { ConfirmModalComponent } from '../shared/confirm-modal/confirm-modal.com
 export class CommonService {
   loader = false;
   mobileSidebar = false;
+  authMenu:any =[
+    {
+      text: 'Home',
+      link: '/home'
+    },
+    {
+      text: 'About',
+      link: '/home',
+      id: 'about'
+    },
+    {
+      text: 'Student Registration',
+      link: '/student-registration'
+    },
+    {
+      text: 'Company Registration',
+      link: '/company-registration'
+    },
+    {
+      text: 'Contact Us',
+      link: '/home',
+      id: 'contact'
+    },
+     /* {
+      text: 'Login',
+      link: '/login'
+    }, */
+  ]
+  homeMenu:any =[
+    {
+      text: 'Home',
+      link: '/home',
+      id: 'home'
+    },
+    {
+      text: 'About',
+      link: '/home',
+      id: 'about'
+    },
+    {
+      text: 'Contact Us',
+      link: '/home',
+      id: 'contact'
+    },
+    /* {
+      text: 'Dashboard',
+      link: '/company-dashboard',
+      type: 'company'
+    },
+    {
+      text: 'Dashboard',
+      link: '/student-dashboard',
+      type: 'student'
+    } */
+  ]
+  studentMenu:any =[
+    {
+      text: 'Search Internship',
+      link: '/student-dashboard'
+    },
+    {
+      text: 'Applied Internship',
+      link: '/student-dashboard/applied'
+    },
+    {
+      text: 'Profile',
+      link: '/student-dashboard/profile'
+    }
+  ]
+  companyMenu:any =[
+    {
+      text: ' Search Internship',
+      link: '/company-dashboard'
+    },
+    {
+      text: ' Create Internship',
+      link: '/company-dashboard/create-internship'
+    },
+    {
+      text: 'Profile',
+      link: '/company-dashboard/company-profile'
+    }
+  ]
   constructor(private _snackBar: MatSnackBar, public dialog: MatDialog) {}
 
   showLoader() {

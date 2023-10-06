@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -27,9 +27,26 @@ export class SidebarAuthComponent {
       text: 'Company Registration',
       link: '/company-registration'
     },
-    {
+    /* {
       text: 'Login',
       link: '/login'
+    }, */
+    {
+      text: 'Contact Us',
+      link: '/home',
+      id: 'contact'
+    }
+  ]
+  homeMenu:any =[
+    {
+      text: 'Home',
+      link: '/home',
+      id: 'home'
+    },
+    {
+      text: 'About',
+      link: '/home',
+      id: 'about'
     },
     {
       text: 'Contact Us',
@@ -39,7 +56,7 @@ export class SidebarAuthComponent {
   ]
   studentMenu:any =[
     {
-      text: 'Internship List',
+      text: 'Search Internship',
       link: '/student-dashboard'
     },
     {
@@ -53,7 +70,7 @@ export class SidebarAuthComponent {
   ]
   companyMenu:any =[
     {
-      text: ' Internship List',
+      text: ' Search Internship',
       link: '/company-dashboard'
     },
     {
@@ -65,21 +82,15 @@ export class SidebarAuthComponent {
       link: 'company-profile'
     }
   ]
-  menuList:any=[];
+ // menuList:any=[];
+  currentRoute:any;
+  @Input() menuList:any;
+  @Input() showDashboard:any = false;
   constructor(public commonService: CommonService,public router: Router,
+    public route: ActivatedRoute,
     public authService: AuthService){}
 
   ngOnInit(): void {
-    console.log(this.authService.isAuthenticated(),this.authService.isType())
-  if(!this.authService.isAuthenticated() && this.authService.isAuthenticated() == null ){
-    this.menuList = this.authMenu
-  }
-  else if(this.authService.isAuthenticated() && this.authService.isType() == 'company'){
-    this.menuList = this.companyMenu;
-  }
-  else if(this.authService.isAuthenticated() && this.authService.isType() == 'student'){
-    this.menuList = this.studentMenu;
-  }
   }
   toggleClass() {
     this.commonService.mobileSidebar = !this.commonService.mobileSidebar;
@@ -99,17 +110,18 @@ export class SidebarAuthComponent {
   goTo(item:any){
     this.toggleClass()
     if(item.link && !item.id){
-      console.log('ds')
       this.router.navigate([item.link])
     }
     else{
       if(item.id == 'about'){
-        console.log('a')
         this.router.navigate([item.link])
         this.scrollToAbout()
       }
+     else if(item.id == 'home'){
+        this.router.navigate([item.link])
+        this.scrollToHome()
+      }
       else{
-        console.log('c')
         this.router.navigate([item.link])
 this.scrolltoContact()
       }
@@ -124,6 +136,12 @@ this.scrolltoContact()
   }
   scrollToAbout(){
     const element = document.getElementById('about');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  scrollToHome(){
+    const element = document.getElementById('home');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

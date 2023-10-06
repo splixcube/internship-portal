@@ -19,6 +19,8 @@ export class CreateEditInternshipComponent {
     company_state: ['', Validators.required],
     minimum_requirenment: ['', Validators.required],
     last_apply_date: ['', Validators.required],
+    internship_start: ['', Validators.required],
+    internship_end: ['', Validators.required],
   });
   id:any;
   state:any = [

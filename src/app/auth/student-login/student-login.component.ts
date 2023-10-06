@@ -20,13 +20,17 @@ export class StudentLoginComponent {
 
  
   async submit() {
-    try {
-      let res = await this.authService.studentLogin(this.loginForm.value)
-       this.commonService.showToast("Successfully login")
+    console.log("enter")
+    if(this.loginForm.valid){
+      try {
+        let res = await this.authService.studentLogin(this.loginForm.value)
+         this.commonService.showToast("Successfully login")
+      }
+      catch (err: any) {
+        localStorage.clear()
+        this.commonService.showError(err.message)
+      }
     }
-    catch (err: any) {
-      localStorage.clear()
-      this.commonService.showError(err.message)
-    }
+   
   }
 }
