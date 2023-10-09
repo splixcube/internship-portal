@@ -1,11 +1,11 @@
 export const environment = {
   firebase: {
-    apiKey: 'AIzaSyBuhOKgiRja06iPCiD9RMinRFg5B-p7A-Y',
-    authDomain: 'highschoolintern-bd580.firebaseapp.com',
-    projectId: 'highschoolintern-bd580',
-    storageBucket: 'highschoolintern-bd580.appspot.com',
-    messagingSenderId: '144381831343',
-    appId: '1:144381831343:web:cd379500a9af87892b0c5a',
-    measurementId: 'G-HX981J077P',
+    apiKey: "AIzaSyAk8AmP1G7KP8fGqdNJhOjhp0IMyuCsT7E",
+  authDomain: "highschoolintern-93e53.firebaseapp.com",
+  projectId: "highschoolintern-93e53",
+  storageBucket: "highschoolintern-93e53.appspot.com",
+  messagingSenderId: "744184916693",
+  appId: "1:744184916693:web:3bd4a0611c0f9472d2505c",
+  measurementId: "G-WN01XPPZ8E"
   },
 };
